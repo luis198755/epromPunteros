@@ -1,12 +1,11 @@
 // Incluye la biblioteca Serial para imprimir en el monitor serial
 #include <EEPROM.h>
 
-
  // Definir el tamaño de la matriz (3x3 en este caso)
-  int filas = 30;
-  int columnas = 2;
+int filas = 30;
+int columnas = 2;
 
-// Declaración de la función imprimirMatriz
+// Declaración de la funciones
 void generarMatrizAleatoria(unsigned long *matriz, int *filas, int *columnas);
 void imprimirMatriz(unsigned long *matriz, int *filas, int *columnas);
 void escribirMatrizEnEEPROM(unsigned long* matriz, int *filas, int *columnas);
@@ -16,16 +15,16 @@ void setup() {
   // Inicializa el monitor serial
   Serial.begin(115200);
   
+  // Definición de Matrices de prueba
   unsigned long miMatriz[filas][columnas];
   unsigned long miMatriz2[filas][columnas];
   
+  // Genera una matriz aleatoria de tamaño filasXcolumnas
   generarMatrizAleatoria(&miMatriz[0][0], &filas, &columnas);
-  
   // Guardar la matriz en la EEPROM
   escribirMatrizEnEEPROM(&miMatriz[0][0],&filas, &columnas);
   // Recuperar la matriz desde la EEPROM
   leerMatrizDesdeEEPROM(&miMatriz2[0][0],&filas, &columnas);
-
   // Llama a la función imprimirMatriz pasando la matriz y sus dimensiones como punteros
   imprimirMatriz(&miMatriz2[0][0], &filas, &columnas);
 }
@@ -34,6 +33,7 @@ void loop() {
   // El bucle principal no hace nada en este ejemplo
 }
 
+// Definición de la función generarMatrizAleatoria
 void generarMatrizAleatoria(unsigned long *matriz, int *filas, int *columnas) {
   // Inicializa el generador de números aleatorios con una semilla
   randomSeed(analogRead(0));
@@ -44,7 +44,6 @@ void generarMatrizAleatoria(unsigned long *matriz, int *filas, int *columnas) {
     }
   }
 }
-
 // Definición de la función imprimirMatriz
 void imprimirMatriz(unsigned long *matriz, int *filas, int *columnas) {
   // Recorrer las filas de la matriz
@@ -59,7 +58,7 @@ void imprimirMatriz(unsigned long *matriz, int *filas, int *columnas) {
     Serial.println();
   }
 }
-
+// Definición de la función escribirMatrizEnEEPROM
 void escribirMatrizEnEEPROM(unsigned long* matriz, int *filas, int *columnas) {
   int direccion = 0;  // Dirección inicial en la EEPROM
 
@@ -70,7 +69,7 @@ void escribirMatrizEnEEPROM(unsigned long* matriz, int *filas, int *columnas) {
     }
   }
 }
-
+// Definición de la función leerMatrizDesdeEEPROM
 void leerMatrizDesdeEEPROM(unsigned long* matriz, int *filas, int *columnas) {
   int direccion = 0;  // Dirección inicial en la EEPROM
 
