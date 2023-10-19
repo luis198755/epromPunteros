@@ -132,7 +132,8 @@ void setup() {
   int * filasColumnas = revisionMatrizProgramacion(matrizMicroSD,&ROWS, &COLUMNS);
 
   // Genera una matriz aleatoria de tamaño filasXcolumnas
-  unsigned long ** matrizAleatoria = generarMatrizAleatoria(&filasColumnas[0], &filasColumnas[1]);
+  //unsigned long ** matrizAleatoria = generarMatrizAleatoria(&filasColumnas[0], &filasColumnas[1]);
+  //imprimirMatriz(matrizAleatoria, &filasColumnas[0], &filasColumnas[1]);
 
   // Llama a la función imprimirMatriz pasando la matriz y sus dimensiones como punteros
   imprimirMatriz(matrizMicroSD, &filasColumnas[0], &filasColumnas[1]);
